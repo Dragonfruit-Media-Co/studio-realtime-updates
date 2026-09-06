@@ -1,18 +1,27 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DFM Realtime Studio — install</title>
-<style>body{font:15px/1.5 system-ui,-apple-system,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;color:#111}h1{font-size:22px}h2{font-size:17px;margin-top:28px}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}.v{color:#666}a.btn{display:inline-block;background:#E94027;color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-weight:600}ol li{margin:6px 0}</style>
+<style>body{font:15px/1.55 system-ui,-apple-system,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;color:#111}h1{font-size:24px;margin-bottom:4px}h2{font-size:17px;margin-top:34px}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}.v{color:#666}a.btn{display:inline-block;background:#E94027;color:#fff;text-decoration:none;padding:9px 16px;border-radius:999px;font-weight:600}ol li{margin:6px 0}img{max-width:100%;border-radius:10px;margin:10px 0;display:block}hr{border:0;border-top:1px solid #e5e5e5;margin:34px 0}small{color:#666}</style>
 <h1>DFM Realtime Studio <span class="v">v0.6.0</span></h1>
-<p>Chrome extension for the Dragonfruit team: realtime views, trends, A/B tests and title/thumbnail changes for client channels, plus the packaging card in YouTube Studio.</p>
-<h2>Managed install (preferred)</h2>
-<p>If your Chrome profile is signed in with your @dragonfruitmedia.co account and the admin has applied the policy, the extension installs and updates by itself. Nothing to do.</p>
-<h2>Manual install (until the policy is in place)</h2>
+<p>Chrome extension for the Dragonfruit team: realtime views, trends, A/B tests and title/thumbnail changes for our client channels, plus the packaging card inside YouTube Studio.</p>
+<h2>Install</h2>
+<p><b>Managed (preferred).</b> Sign in to Chrome with your @dragonfruitmedia.co account. Once the Workspace admin has applied the policy, the extension installs and updates on its own. Nothing to do.</p>
+<p><b>Manual (until then).</b></p>
 <p><a class="btn" href="dfm-realtime-studio.zip">Download dfm-realtime-studio.zip</a></p>
 <ol>
-<li>Unzip it. Keep the folder somewhere permanent (not Downloads).</li>
-<li>Open <code>chrome://extensions</code>, switch on <b>Developer mode</b> (top right).</li>
-<li>Click <b>Load unpacked</b> and pick the unzipped <code>dfm-realtime-studio</code> folder.</li>
-<li>Pin the icon, open it, paste your ClickUp API token and your Notion token, press Save.</li>
+<li>Unzip it into a folder you will keep (not Downloads).</li>
+<li>Open <code>chrome://extensions</code>, switch on <b>Developer mode</b>, click <b>Load unpacked</b>, pick the unzipped folder, pin the icon.</li>
 </ol>
-<p class="v">Updates: download the zip again and unzip over the same folder, then press the reload arrow on <code>chrome://extensions</code>. The managed install does this automatically.</p>
-<h2>For the Workspace admin</h2>
-<p>Extension id <code>iokdekijoeafjfgmecfaohgembnjbcga</code> · update URL <code>https://dragonfruit-media-co.github.io/studio-realtime-updates/update.xml</code>. Full steps in the repository's <code>docs/deploy-managed.md</code>.</p>
+<img src="img/chrome-extensions.png" alt="chrome://extensions: Developer mode, Load unpacked">
+<p><small>To update later: download the zip again, unzip over the same folder, press the reload arrow on <code>chrome://extensions</code>.</small></p>
+<h2>Setup (once)</h2>
+<p>Open the extension and paste your two tokens, then press <b>Save</b>.</p>
+<img src="img/popup-setup.png" alt="The extension asking for the ClickUp and Notion tokens">
+<img src="img/tokens.png" alt="Where the tokens come from">
+<ul>
+<li><b>ClickUp API token</b> — ClickUp → your avatar → Settings → <b>Apps</b> → API Token → Generate → copy (<code>pk_…</code>).</li>
+<li><b>Notion token</b> — Notion → Settings → <b>Connections</b> → Develop or manage integrations → New integration (Internal) → copy the secret (<code>ntn_…</code>). Give the integration access to the <i>DFM Realtime Studio</i> page that holds the two databases.</li>
+</ul>
+<p>That's it: your client channels appear from the ClickUp Client Database. Press <b>Add</b> on the ones you want to follow.</p>
+<img src="img/popup.png" alt="The extension running">
+<hr>
+<p><small>Admin: extension id <code>iokdekijoeafjfgmecfaohgembnjbcga</code> · update URL <code>https://dragonfruit-media-co.github.io/studio-realtime-updates/update.xml</code> · steps in the source repository's <code>docs/deploy-managed.md</code>.</small></p>
 </html>
