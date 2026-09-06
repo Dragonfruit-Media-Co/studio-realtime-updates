@@ -1,27 +1,31 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DFM Realtime Studio — install</title>
-<style>body{font:15px/1.55 system-ui,-apple-system,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;color:#111}h1{font-size:24px;margin-bottom:4px}h2{font-size:17px;margin-top:34px}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}.v{color:#666}a.btn{display:inline-block;background:#E94027;color:#fff;text-decoration:none;padding:9px 16px;border-radius:999px;font-weight:600}ol li{margin:6px 0}img{max-width:100%;border-radius:10px;margin:10px 0;display:block}hr{border:0;border-top:1px solid #e5e5e5;margin:34px 0}small{color:#666}</style>
-<h1>DFM Realtime Studio <span class="v">v0.6.0</span></h1>
-<p>Chrome extension for the Dragonfruit team: realtime views, trends, A/B tests and title/thumbnail changes for our client channels, plus the packaging card inside YouTube Studio.</p>
-<h2>Install</h2>
-<p><b>Managed (preferred).</b> Sign in to Chrome with your @dragonfruitmedia.co account. Once the Workspace admin has applied the policy, the extension installs and updates on its own. Nothing to do.</p>
-<p><b>Manual (until then).</b></p>
-<p><a class="btn" href="dfm-realtime-studio.zip">Download dfm-realtime-studio.zip</a></p>
-<ol>
-<li>Unzip it into a folder you will keep (not Downloads).</li>
-<li>Open <code>chrome://extensions</code>, switch on <b>Developer mode</b>, click <b>Load unpacked</b>, pick the unzipped folder, pin the icon.</li>
-</ol>
-<img src="img/chrome-extensions.png" alt="chrome://extensions: Developer mode, Load unpacked">
-<p><small>To update later: download the zip again, unzip over the same folder, press the reload arrow on <code>chrome://extensions</code>.</small></p>
-<h2>Setup (once)</h2>
-<p>Open the extension and paste your two tokens, then press <b>Save</b>.</p>
-<img src="img/popup-setup.png" alt="The extension asking for the ClickUp and Notion tokens">
-<img src="img/tokens.png" alt="Where the tokens come from">
-<ul>
-<li><b>ClickUp API token</b> — ClickUp → your avatar → Settings → <b>Apps</b> → API Token → Generate → copy (<code>pk_…</code>).</li>
-<li><b>Notion token</b> — Notion → Settings → <b>Connections</b> → Develop or manage integrations → New integration (Internal) → copy the secret (<code>ntn_…</code>). Give the integration access to the <i>DFM Realtime Studio</i> page that holds the two databases.</li>
-</ul>
-<p>That's it: your client channels appear from the ClickUp Client Database. Press <b>Add</b> on the ones you want to follow.</p>
-<img src="img/popup.png" alt="The extension running">
-<hr>
-<p><small>Admin: extension id <code>iokdekijoeafjfgmecfaohgembnjbcga</code> · update URL <code>https://dragonfruit-media-co.github.io/studio-realtime-updates/update.xml</code> · steps in the source repository's <code>docs/deploy-managed.md</code>.</small></p>
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DFM Realtime Studio — install</title>
+<link rel="icon" href="img/icon.png"><link rel="stylesheet" href="style.css">
+<div class="wrap">
+  <div class="hero"><img src="img/icon.png" alt=""><div><h1>DFM Realtime Studio</h1><div class="v">Chrome extension · <span id="version">…</span></div></div></div>
+  <p class="lead">Realtime views, trends, A/B tests and title/thumbnail changes for our client channels, plus the packaging card inside YouTube Studio.</p>
+  <nav class="tabs"><a class="on" href="./">For teammates</a><a href="admin.html">For the Workspace admin</a></nav>
+
+  <div class="callout"><span class="dot"></span><div><b>Signed in to Chrome with your @dragonfruitmedia.co account?</b><p>Once the admin has applied the policy the extension installs and updates by itself. Nothing to do — skip to <a href="#setup" style="color:inherit">Setup</a>.</p></div></div>
+
+  <h2>Manual install (until the policy is in place)</h2>
+  <div class="step"><div class="n">1</div><div><h3>Download and unzip</h3><p>Put the unzipped folder somewhere you will keep it — not Downloads.</p><a class="btn" href="dfm-realtime-studio.zip">Download dfm-realtime-studio.zip</a></div></div>
+  <div class="step"><div class="n">2</div><div><h3>Load it in Chrome</h3><p>Open <code>chrome://extensions</code>, switch on <b>Developer mode</b>, click <b>Load unpacked</b>, pick the unzipped folder, then pin the icon from the puzzle-piece menu.</p><img src="img/chrome-extensions.png" alt="chrome://extensions: Developer mode toggle, Load unpacked button, pin"></div></div>
+  <div class="step"><div class="n">↻</div><div><h3>Updating later</h3><p>Download the zip again, unzip over the same folder, press the reload arrow on <code>chrome://extensions</code>. The managed install does this by itself.</p></div></div>
+
+  <h2 id="setup">Setup (once)</h2>
+  <div class="step"><div class="n">3</div><div><h3>Paste your two tokens</h3><p>Open the extension, paste both tokens, press <b>Save</b>. They act as you and never leave your browser.</p><img src="img/popup-setup.png" alt="The extension asking for the ClickUp and Notion tokens"></div></div>
+  <div class="step"><div class="n">4</div><div><h3>Where the tokens come from</h3>
+    <p><b>ClickUp API token</b> — ClickUp → your avatar → Settings → <b>Apps</b> → API Token → Generate → copy (<code>pk_…</code>).</p>
+    <p><b>Notion token</b> — Notion → Settings → <b>Connections</b> → Develop or manage integrations → New integration (Internal) → copy the secret (<code>ntn_…</code>), then share the <i>DFM Realtime Studio</i> page (the one with the two databases) with that integration.</p>
+    <img src="img/tokens.png" alt="Where the ClickUp and Notion tokens come from"></div></div>
+  <div class="step"><div class="n">5</div><div><h3>Add your channels</h3><p>Your client channels appear from the ClickUp Client Database. Press <b>Add</b> on the ones you follow. Each shows its latest long-form videos with realtime views, trend and changes.</p><img src="img/popup.png" alt="The extension running"></div></div>
+
+  <p class="foot">Questions → Mohamed. Admin details on the <a href="admin.html">admin page</a>.</p>
+</div>
+<script>
+  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /version='([^']+)'/.exec(t)?.[1]; if (v) document.getElementById('version').textContent = 'v' + v; }).catch(() => {});
+</script>
 </html>

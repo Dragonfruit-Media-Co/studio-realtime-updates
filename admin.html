@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DFM Realtime Studio — managed install (admin)</title>
+<link rel="icon" href="img/icon.png"><link rel="stylesheet" href="style.css">
+<div class="wrap">
+  <div class="hero"><img src="img/icon.png" alt=""><div><h1>DFM Realtime Studio</h1><div class="v">Managed Chrome install · for the Google Workspace admin · <span id="version">…</span></div></div></div>
+  <p class="lead">One policy, about five minutes. Every Chrome profile signed in with a company account gets the extension force-installed, pinned and auto-updated from our own feed. No Web Store, no device enrolment.</p>
+  <nav class="tabs"><a href="./">For teammates</a><a class="on" href="admin.html">For the Workspace admin</a></nav>
+
+  <h2>What you will paste</h2>
+  <div class="copy"><code id="c-id">iokdekijoeafjfgmecfaohgembnjbcga</code><button data-copy="c-id">Copy id</button></div>
+  <div class="copy"><code id="c-url">https://dragonfruit-media-co.github.io/studio-realtime-updates/update.xml</code><button data-copy="c-url">Copy URL</button></div>
+  <div class="copy"><pre><code id="c-json">{
+  "trackedDatabaseId": "3d315859033b80839729cd1fd0cb2b64",
+  "changesDatabaseId": "3d215859033b80c3bc42ffcd0f98ee56",
+  "clickupListId": "901819561698"
+}</code></pre><button data-copy="c-json">Copy JSON</button></div>
+
+  <h2>Steps in the Google Admin console</h2>
+  <div class="step"><div class="n">1</div><div><h3>Devices → Chrome → Apps &amp; extensions → Users &amp; browsers</h3><p>Select the organizational unit (or group) that contains the Dragonfruit team, then the yellow <b>+</b> at the bottom right → <b>Add Chrome app or extension by ID</b>.</p><img src="img/admin-1-navigate.png" alt="Admin console navigation: Devices, Chrome, Apps and extensions, Users and browsers, select the OU, plus button"></div></div>
+  <div class="step"><div class="n">2</div><div><h3>Add by ID, from our custom URL</h3><p>Paste the extension id, choose <b>From a custom URL</b> and paste the update URL, then Save.</p><img src="img/admin-2-add.png" alt="Add Chrome app or extension by ID dialog with the id and the custom update URL"></div></div>
+  <div class="step"><div class="n">3</div><div><h3>Force install, pin, and the managed configuration</h3><p>Set the installation policy to <b>Force install + pin to browser toolbar</b>. In the extension's settings, paste the JSON above under <b>Policy for extensions</b>. It pre-fills the two Notion database ids and the ClickUp list id, so teammates only paste their own tokens.</p><img src="img/admin-3-policy.png" alt="Installation policy set to Force install and pin, managed configuration JSON"></div></div>
+  <div class="step"><div class="n">✓</div><div><h3>Done</h3><p>Chrome applies user policy within minutes to any profile signed in with a managed account. Updates are pulled from the feed every few hours; <code>chrome://extensions</code> → Update forces one.</p></div></div>
+
+  <h2>If policies are managed by file or GPO instead</h2>
+  <div class="copy"><pre><code id="c-ext">{ "iokdekijoeafjfgmecfaohgembnjbcga": {
+    "installation_mode": "force_installed",
+    "toolbar_pin": "force_pinned",
+    "update_url": "https://dragonfruit-media-co.github.io/studio-realtime-updates/update.xml" } }</code></pre><button data-copy="c-ext">Copy ExtensionSettings</button></div>
+
+  <p class="foot">The feed (this site) hosts only the signed package and its update manifest. The extension asks each person for their own ClickUp and Notion tokens; nothing is distributed through policy but the three ids above. Source and details: <code>docs/deploy-managed.md</code> in the private repo.</p>
+</div>
+<script>
+  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /version='([^']+)'/.exec(t)?.[1]; if (v) document.getElementById('version').textContent = 'v' + v; }).catch(() => {});
+  for (const b of document.querySelectorAll('button[data-copy]')) b.onclick = async () => { const t = document.getElementById(b.dataset.copy).textContent; try { await navigator.clipboard.writeText(t); b.classList.add('ok'); const was = b.textContent; b.textContent = 'Copied'; setTimeout(() => { b.textContent = was; b.classList.remove('ok'); }, 1400); } catch {} };
+</script>
+</html>
