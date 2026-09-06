@@ -11,9 +11,9 @@
   <div class="callout"><span class="dot"></span><div><b>Signed in to Chrome with your @dragonfruitmedia.co account?</b><p>Once the admin has applied the policy the extension installs and updates by itself. Nothing to do — skip to <a href="#setup" style="color:inherit">Setup</a>.</p></div></div>
 
   <h2>Manual install (until the policy is in place)</h2>
-  <div class="step"><div class="n">1</div><div><h3>Download and unzip</h3><p>Put the unzipped folder somewhere you will keep it — not Downloads.</p><a class="btn" href="dfm-realtime-studio.zip">Download dfm-realtime-studio.zip</a></div></div>
+  <div class="step"><div class="n">1</div><div><h3>Download and unzip</h3><p>Unzip it: you get a folder named <code id="folder">dfm-realtime-studio-…</code>. Put it somewhere you will keep it — not Downloads.</p><a class="btn" id="dl" href="dfm-realtime-studio.zip">Download dfm-realtime-studio.zip</a></div></div>
   <div class="step"><div class="n">2</div><div><h3>Load it in Chrome</h3><p>Open <code>chrome://extensions</code>, switch on <b>Developer mode</b>, click <b>Load unpacked</b>, pick the unzipped folder, then pin the icon from the puzzle-piece menu.</p><img src="img/chrome-extensions.png" alt="chrome://extensions: Developer mode toggle, Load unpacked button, pin"></div></div>
-  <div class="step"><div class="n">↻</div><div><h3>Updating later</h3><p>Download the zip again, unzip over the same folder, press the reload arrow on <code>chrome://extensions</code>. The managed install does this by itself.</p></div></div>
+  <div class="step"><div class="n">↻</div><div><h3>Updating later</h3><p>Download the new zip and unzip it (a new versioned folder). On <code>chrome://extensions</code> remove the old version, then <b>Load unpacked</b> the new folder and paste your two tokens again. The managed install skips all of this.</p></div></div>
 
   <h2 id="setup">Setup (once)</h2>
   <div class="step"><div class="n">3</div><div><h3>Paste your two tokens</h3><p>Open the extension, paste both tokens, press <b>Save</b>. They act as you and never leave your browser.</p><img src="img/popup-setup.png" alt="The extension asking for the ClickUp and Notion tokens"></div></div>
@@ -27,6 +27,6 @@
   <p class="foot">Questions → Mohamed. Admin details on the <a href="admin.html">admin page</a>.</p>
 </div>
 <script>
-  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /version='([^']+)'/.exec(t)?.[1]; if (v) document.getElementById('version').textContent = 'v' + v; }).catch(() => {});
+  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /appid=[\s\S]*?version='([^']+)'/.exec(t)?.[1]; if (!v) return; document.getElementById('version').textContent = 'v' + v; const dl = document.getElementById('dl'); dl.href = `dfm-realtime-studio-${v}.zip`; dl.textContent = `Download dfm-realtime-studio-${v}.zip`; document.getElementById('folder').textContent = `dfm-realtime-studio-${v}`; }).catch(() => {});
 </script>
 </html>

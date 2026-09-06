@@ -32,7 +32,7 @@
   <p class="foot">The feed (this site) hosts only the signed package and its update manifest. The extension asks each person for their own ClickUp and Notion tokens; nothing is distributed through policy but the three ids above. Source and details: <code>docs/deploy-managed.md</code> in the private repo.</p>
 </div>
 <script>
-  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /version='([^']+)'/.exec(t)?.[1]; if (v) document.getElementById('version').textContent = 'v' + v; }).catch(() => {});
+  fetch('update.xml').then((r) => r.text()).then((t) => { const v = /appid=[\s\S]*?version='([^']+)'/.exec(t)?.[1]; if (v) document.getElementById('version').textContent = 'v' + v; }).catch(() => {});
   for (const b of document.querySelectorAll('button[data-copy]')) b.onclick = async () => { const t = document.getElementById(b.dataset.copy).textContent; try { await navigator.clipboard.writeText(t); b.classList.add('ok'); const was = b.textContent; b.textContent = 'Copied'; setTimeout(() => { b.textContent = was; b.classList.remove('ok'); }, 1400); } catch {} };
 </script>
 </html>
